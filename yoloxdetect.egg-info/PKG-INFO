@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: yoloxdetect
+Version: 0.0.10
+Summary: It is a demo application of the YOLOX model.
+Home-page: https://github.com/kadirnar/yolox-pip
+Author: kadirnar
+License: MIT
+Keywords: machine-learning,deep-learning,pytorch,vision,image-classification,object-detection,yolox,yolov7,yolov6,yolo detector,yolov5
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Education
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: opencv_python
+Requires-Dist: huggingface_hub
+Requires-Dist: torch
+Requires-Dist: yolox==0.3.0
+
+<div align="center">
+<h3>
+  Yolox-Pip: This is a packaged version of the YOLOX for easy installation and use.
+</h3>
+<h4>
+    <img width="800" alt="teaser" src="doc/fig.png">
+</h4>
+</div>
+
+## <div align="center">Overview</div>
+
+This repo is a packaged version of the [YOLOX](https://github.com/Megvii-BaseDetection/YOLOX) for easy installation and use.
+### Installation
+```
+pip install yoloxdetect
+```
+
+### Yolox Inference
+```python
+from yoloxdetect import YoloxDetector
+
+model = YoloxDetector(
+    model_path = "kadirnar/yolox_s-v0.1.1", # or "data/weights/yolox_s.pth"
+    config_path = "configs.yolox_s",
+    device = "cuda:0",
+    hf_model=True,
+)
+model.classes = None
+model.conf = 0.25
+model.iou = 0.45
+model.show = False
+model.save = True
+
+pred = model.predict(image='data/images', img_size=640)
+```
+### Citation
+```bibtex
+ @article{yolox2021,
+  title={YOLOX: Exceeding YOLO Series in 2021},
+  author={Ge, Zheng and Liu, Songtao and Wang, Feng and Li, Zeming and Sun, Jian},
+  journal={arXiv preprint arXiv:2107.08430},
+  year={2021}
+}
+```
